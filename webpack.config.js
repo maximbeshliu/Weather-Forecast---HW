@@ -6,15 +6,24 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const CopyPlugin = require('copy-webpack-plugin');
+
 module.exports = {
 
-    entry: './src/JS/index.js',
+    entry: {
+        index: './src/JS/index.js',
+        about: './src/JS/about.js',
+        shared: './src/JS/shared.js',
+        list: './src/JS/list.js'
+
+
+    },
 
     output: {
 
         path: path.resolve(__dirname, 'build'),
 
-        filename: 'bundle.js'
+        filename: '[name].js'
 
     },
 
@@ -75,9 +84,32 @@ module.exports = {
 
             filename: 'index.html',
 
-            template: '!!ejs-webpack-loader!./index.ejs'
+            template: '!!ejs-webpack-loader!./index.ejs',
+
+            chunks: ['shared', 'index']
+
+        }),
+
+        new HtmlWebpackPlugin({
+
+            filename: 'about.html',
+
+            template: '!!ejs-webpack-loader!./about.ejs',
+
+            chunks: ['shared', 'about']
+
+        }),
+
+        new HtmlWebpackPlugin({
+
+            filename: 'list.html',
+
+            template: '!!ejs-webpack-loader!./list.ejs',
+
+            chunks: ['shared', 'list']
 
         })
+
 
     ],
 

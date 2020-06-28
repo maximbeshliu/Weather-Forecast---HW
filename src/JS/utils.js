@@ -1,4 +1,5 @@
-import { renderForecast } from './api.js';
+import { getForecast, renderForecast } from './api.js';
+
 
 export function dateConverter() {
     var now = new Date();
@@ -23,28 +24,40 @@ export function dropdownRender() {
     for (var keyCity in cities) {
         var option = document.createElement('option');
         option.setAttribute('value', keyCity);
+        option.setAttribute('id', keyCity);
         option.innerText = cities[keyCity].name;
         dropdown.append(option);
     }
 
-    selector.addEventListener('change', getCity);
+    selector.addEventListener('change', () => {
+        let city = event.target.value;
+        getCity(city);
+        localStorage.setItem('selectedCity', city);
+    });
 
-    function getCity(event) {
-        let targetValue = event.target.value;
-        let citiesUrl = cities[targetValue].url;
+    function getCity(city) {
+        let citiesUrl = cities[city].url;
         let image = document.querySelector('.picture');
         image.setAttribute('src', citiesUrl);
-        let cityName = cities[targetValue].name;
+        let cityName = cities[city].name;
         document.getElementById('info').style.visibility = "visible";
+        getForecast(cityName).then(data => renderForecast(data));
+    }
 
 
-        fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&appid=92bfc45b86a2c6a05fe27b366138f622')
-            .then(response => response.json())
-            .then(data => renderForecast(data));
+
+    if (selectedCity) {
+        let optionStorage = document.getElementById(selectedCity);
+        if (optionStorage) {
+            getCity(selectedCity);
+            optionStorage.selected = true;
+        }
 
     }
+
 }
 
+export const selectedCity = localStorage.getItem('selectedCity');
 
 
 

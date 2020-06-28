@@ -1,21 +1,28 @@
+import { getForecast, renderForecast } from './api.js';
+import { cities, selectedCity } from './utils.js';
 
-export function getForecast(cityName) {
-    return fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&appid=92bfc45b86a2c6a05fe27b366138f622')
-        .then(response => response.json());
-}
-
-export function renderForecast(data) {
-    let nameOfCity = document.querySelector('.city');
-    nameOfCity.innerText = data.name;
-    let temperature = document.querySelector('.temperature');
-    temperature.innerText = "Temperature " + Math.floor(data.main.temp) + "°C";
-    let clouds = document.querySelector('.clouds');
-    let weatherDescription = document.querySelector('.weather-description');
-    weatherDescription.innerText = data.weather[0].description;
-    let sentece = weatherDescription.innerText;
-    let wind = document.querySelector('.wind-speed');
-    wind.innerText = "Wind: " + data.wind.speed + " m/s";
-
+function renderCityList(data) {
+    let container = document.createElement('div');
+    container.setAttribute('class', 'weather-container');
+    let mainList = document.querySelector('.container-list');
+    let weatherInfo = document.createElement('div');
+    weatherInfo.setAttribute('class', 'about-weather');
+    let dataName = document.createElement('h3');
+    let dataTemp = document.createElement('span');
+    let dataDescription = document.createElement('span');
+    let dataWind = document.createElement('span');
+    dataName.innerText = data.name;
+    dataTemp.innerText = `Temperature: ${Math.floor(data.main.temp)} ${"°C"}`;
+    dataDescription.innerText = data.weather[0].description;
+    dataWind.innerText = `${"Wind"}: ${data.wind.speed} ${"m/s"} `;
+    let clouds = document.createElement('img');
+    container.append(clouds);
+    container.append(weatherInfo);
+    mainList.append(container);
+    weatherInfo.append(dataName);
+    weatherInfo.append(dataTemp);
+    weatherInfo.append(dataDescription);
+    weatherInfo.append(dataWind);
 
     for (let i = 500; i <= 504; i++) {
         if (data.weather[0].id === i) {
@@ -69,15 +76,15 @@ export function renderForecast(data) {
         }
     }
 
-
-    function capitalizeFirstLetter() {
-
-        weatherDescription.innerHTML = sentece[0].toUpperCase() + sentece.slice(1);
-
-    }
-    capitalizeFirstLetter();
-
 }
 
+let arrayOfPromises = [];
 
+for (let city in cities) {
+    arrayOfPromises.push(getForecast(cities[city].name));
+    if (city === selectedCity) {
+        arrayOfPromises.pop(getForecast(cities[city].name));
+    }
+}
 
+Promise.all(arrayOfPromises).then(data => data.map(item => renderCityList(item)));;;

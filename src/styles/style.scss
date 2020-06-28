@@ -5,13 +5,104 @@
     .header{
         display: flex;
         justify-content: space-between;
-        padding: 0 20px;
+        position: fixed;
+        padding: 15px;
         background-color: rgb(255, 235, 205);
-        font-size: 20px;
+        font-size: 15px;
+        z-index: 55;
+        width: 100vw;
+        .list{
+            display: flex;
+            list-style-type: none;
+            justify-content: space-around;
+            width: 300px;
+            font-size: 20px;
+            font-weight: bold;
+        }
         .date{
             font-size: 18px;
         }
+
+        .menu{
+            a{
+                text-decoration: none;
+                ;
+            }
+
+            a:link{
+                color: black;
+            }
+            a:visited{
+                color: black;
+            }
+        }
+        
     }
+
+    .active{
+        border: 1px;
+        border-radius: 45%;
+        padding: 10px;
+        background-color: coral;
+    }
+
+    .main-about{
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        top: 65px;
+       
+        .picture{
+            width: 100vw;
+            height: 100vh;
+        }}
+
+        .main-list{
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            top: 65px;
+            height: 100vh;
+           
+            .picture{
+                position: absolute;
+                width: 100vw;
+                height: 100vh;
+                z-index: 0;
+                top: 0;
+                left: 0;
+            }
+            .container-list{
+                display: flex;
+                flex-flow: wrap;
+                justify-content: space-around;
+                
+            .weather-container{
+                margin: 20px;
+                border: black 1px solid;
+                border-radius: 20%;
+                padding: 2%;
+                background-color: rgba(255, 235, 205, 0.74);
+                font-size: 18px;
+                color:black;    
+                 padding: 10px;
+                 margin-bottom: 5vh;
+                 z-index: 5;
+                 .about-weather{
+                     display: flex;
+                     flex-flow: column;
+                     justify-content: space-around;
+                     padding: 10px;
+                     text-transform: capitalize;
+                 }
+                }
+            }
+            
+        }
 
     .main{
         display: flex;
@@ -19,9 +110,11 @@
         justify-content: center;
         align-items: center;
         position: relative;
+        top: 65px;
+       
         .picture{
             width: 100vw;
-            height: 94.5vh;
+            height: 100vh;
         }
         .dropdown{ width: 200px;
             position: absolute;
