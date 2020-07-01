@@ -4,6 +4,11 @@ export function getForecast(cityName) {
         .then(response => response.json());
 }
 
+export function getWeeklyForecast(cityName) {
+    return fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&units=metric&appid=92bfc45b86a2c6a05fe27b366138f622')
+        .then(response => response.json());
+}
+
 export function renderForecast(data) {
     let nameOfCity = document.querySelector('.city');
     nameOfCity.innerText = data.name;

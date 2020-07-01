@@ -14,9 +14,8 @@ module.exports = {
         index: './src/JS/index.js',
         about: './src/JS/about.js',
         shared: './src/JS/shared.js',
-        list: './src/JS/list.js'
-
-
+        list: './src/JS/list.js',
+        forecast: './src/JS/forecast.js'
     },
 
     output: {
@@ -107,6 +106,16 @@ module.exports = {
             template: '!!ejs-webpack-loader!./list.ejs',
 
             chunks: ['shared', 'list']
+
+        }),
+
+        new HtmlWebpackPlugin({
+
+            filename: 'forecast.html',
+
+            template: '!!ejs-webpack-loader!./forecast.ejs',
+
+            chunks: ['shared', 'forecast']
 
         })
 

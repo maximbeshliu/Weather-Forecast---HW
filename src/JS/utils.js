@@ -1,4 +1,4 @@
-import { getForecast, renderForecast } from './api.js';
+import { getForecast, renderForecast, getWeeklyForecast } from './api.js';
 
 
 export function dateConverter() {
@@ -42,6 +42,7 @@ export function dropdownRender() {
         let cityName = cities[city].name;
         document.getElementById('info').style.visibility = "visible";
         getForecast(cityName).then(data => renderForecast(data));
+
     }
 
 
@@ -58,6 +59,8 @@ export function dropdownRender() {
 }
 
 export const selectedCity = localStorage.getItem('selectedCity');
+
+
 
 
 
