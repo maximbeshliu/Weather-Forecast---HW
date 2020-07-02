@@ -2,9 +2,14 @@
     padding: 0;
     box-sizing: border-box; }
 
+    html,body{
+        height: 100%;
+    }
+
 .header{
         display: flex;
         justify-content: space-between;
+        align-items: center;
         position: fixed;
         padding: 15px;
         background-color: rgb(255, 235, 205);
@@ -15,6 +20,7 @@
             display: flex;
             list-style-type: none;
             justify-content: space-around;
+            align-items: center;
             width: 35vw;
             font-size: 20px;
             font-weight: bold;
@@ -67,27 +73,27 @@
         align-items: center;
         position: relative;
         top: 65px;
-       
-        .picture{
-            width: 100vw;
-            height: 100vh;
-        }
-
-        .container-list{
+        height: 100%;
+        background-image: url("../images/img.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+           .container-forecast{
             display: flex;
             flex-flow: wrap;
             justify-content: space-around;
+            max-height: 100%;
+            width: 100%;
             
         .weather-container{
-            margin: 20px;
             border: black 1px solid;
             border-radius: 20%;
-            padding: 2%;
             background-color: rgba(255, 235, 205, 0.74);
             font-size: 18px;
             color:black;    
              padding: 10px;
-             margin-bottom: 5vh;
+             position: relative;
+             top:20px;
+             
              z-index: 5;
              .about-weather{
                  display: flex;
@@ -102,37 +108,33 @@
 
 
  .main-list{
-            display: flex;
-            flex-flow: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            top: 65px;
-            height: 100vh;
-           
-            .picture{
-                position: absolute;
-                width: 100vw;
-                height: 100vh;
-                z-index: 0;
-                top: 0;
-                left: 0;
-            }
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 65px;
+    height: 100%;
+    background-image: url("../images/img.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
             .container-list{
-                display: flex;
-                flex-flow: wrap;
-                justify-content: space-around;
+               display: flex;
+            flex-flow: wrap;
+            justify-content: space-around;
+            max-height: 100%;
+            width: 100%;
                 
             .weather-container{
-                margin: 20px;
                 border: black 1px solid;
                 border-radius: 20%;
-                padding: 2%;
                 background-color: rgba(255, 235, 205, 0.74);
                 font-size: 18px;
                 color:black;    
                  padding: 10px;
-                 margin-bottom: 5vh;
+                 position: relative;
+                 top:20px;
                  z-index: 5;
                  .about-weather{
                      display: flex;

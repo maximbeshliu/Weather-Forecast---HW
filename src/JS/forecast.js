@@ -19,7 +19,7 @@ if (selectedCity) {
                 if (certainTime === 12) {
                     let container = document.createElement('div');
                     container.setAttribute('class', 'weather-container');
-                    let mainList = document.querySelector('.container-list');
+                    let mainList = document.querySelector('.container-forecast');
                     let weatherInfo = document.createElement('div');
                     weatherInfo.setAttribute('class', 'about-weather');
                     let dataName = document.createElement('h3');
